@@ -1,5 +1,5 @@
 # github-oauth-boilerplate.sh
-Boilerplate **$bash** OAuth flow for use with the Github v3 API
+Boilerplate OAuth flow for **shell** applications integrating with the Github v3 API
 
 
 ```
