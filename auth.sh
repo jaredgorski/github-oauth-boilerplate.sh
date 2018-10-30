@@ -1,16 +1,16 @@
 #!/bin/bash
 
 
-# See README for instructions
+# NOTE: This boilerplate does not currently support 2-Factor Authentication. Coming soon.
 # Github v3 API docs: https://developer.github.com/v3/
 # Non-Web application authentication flow: https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/#non-web-application-flow
 
 
 # Uncomment the line below to set DEFAULT_PATH to this directory. This will allow you to run these scripts from this directory.
-export DEFAULT_PATH=.
+# export DEFAULT_PATH=.
 
 
-# UNSECURE: Important credentials for your Github OAuth application. Once you register an app, add your client ID and secret here to test.
+# INSECURE: Important credentials for your Github OAuth application. Once you register an app, add your client ID and secret here to test.
 # See: https://developer.github.com/v3/guides/basics-of-authentication/#registering-your-app
 CLIENT_ID="XXXXXXXXXXXXXXXXXXXX"
 CLIENT_SECRET="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -33,26 +33,28 @@ function login() {
     # Create authorization for this application
     # Requires CLIENT_ID, and CLIENT_SECRET
     # See: https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization
+    # Remember to set "scopes" below to authenticate for your desired scope access
+    # See: https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/
     githubOAuthLogin=$(curl --silent -X PUT "https://api.github.com/authorizations/clients/$CLIENT_ID" \
       -u "$githubUsername" \
       -H "Content-Type: application/json" \
       -d '{
             "client_secret": "'"$CLIENT_SECRET"'",
             "scopes": [
-              "repo"
+              "user"
             ],
             "note": "prune oAuth for repo scope"
           }')
 
-    # Retrieve any desired OAuth data from response JSON and save to variables (line 36)
+    # Retrieve any desired OAuth data from response JSON and save to variables (line 38)
     # See: https://developer.github.com/v3/oauth_authorizations/#response-5
     userToken=$(echo $githubOAuthLogin | jq '.token')
 
-    # Create and format .session.sh, set session data (line 134, line 144)
+    # Create and format .session.sh, set session data (line 136, line 146)
     resetSession
     setSession_userName "$githubUsername"
 
-    # Only set token or fingerprint if Github API returns one (line 151)
+    # Only set token or fingerprint if Github API returns one (line 153)
     # See: https://developer.github.com/v3/oauth_authorizations/#response-if-returning-an-existing-token
     # See: https://developer.github.com/v3/oauth_authorizations/#get-or-create-an-authorization-for-a-specific-app-and-fingerprint
     if [[ $#userToken -gt 2 ]]
@@ -105,7 +107,7 @@ function logout() {
     # Delete .session.sh
     rm .session.sh
 
-    # UNSECURE: Unset Github token as environment variable (but do not delete)
+    # Unset Github token as environment variable
     unset GITHUB_USER_TOKEN
 
     # Display success feedback to user
@@ -147,7 +149,7 @@ function setSession_userName() {
 
 
 
-# UNSECURE: Create Github user token environment variable
+# Create Github user token environment variable
 function setUserToken() {
   echo "#!/bin/bash\n\nGITHUB_USER_TOKEN=$1" > .token.sh
 }
