@@ -6,8 +6,8 @@
 # Non-Web application authentication flow: https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/#non-web-application-flow
 
 
-# Uncomment the line below to set DEFAULT_PATH to this directory. This will allow you to run these scripts from this directory.
-# export DEFAULT_PATH=.
+# DEFAULT_PATH is set to this directory. If you are using this code in your project, change the DEFAULT_PATH references as needed.
+DEFAULT_PATH=.
 
 
 # INSECURE: Important credentials for your Github OAuth application. Once you register an app, add your client ID and secret here to test.
@@ -43,7 +43,7 @@ function login() {
             "scopes": [
               "user"
             ],
-            "note": "prune oAuth for repo scope"
+            "note": "prune oAuth for user scope"
           }')
 
     # Retrieve any desired OAuth data from response JSON and save to variables (line 38)
