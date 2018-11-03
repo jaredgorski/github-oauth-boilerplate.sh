@@ -1,6 +1,9 @@
 # github-oauth-boilerplate.sh
 Boilerplate OAuth flow for **shell** scripts integrating with the Github v3 API
 
+
+![](/.media/gh_oauth_bp-demo.gif)
+
 ---
 
 ## The Basics
