@@ -8,12 +8,12 @@ Boilerplate OAuth flow for **shell** scripts integrating with the Github v3 API
 
 ## The Basics
 
-It is surprisingly easy to add OAuth to your Github-integrated application. Hopefully this boilerplate, though basic, is still enough to get you started!
+It is surprisingly easy to add OAuth to your Github-integrated application. Hopefully this boilerplate, though basic, is enough to get you started!
 
 ### 10 Easy Steps:
 1) Clone this repository to your computer
-2) Navigate to the resulting directory and `vim auth.sh`
-3) Uncomment the DEFAULT_PATH environment variable export on *line 10*
+2) Navigate to the resulting directory
+3) Open ./auth.sh in vim - `vim ./auth.sh`
 4) Replace "XXXX..." with your OAuth application's [CLIENT_ID and CLIENT_SECRET](https://developer.github.com/v3/guides/basics-of-authentication/#registering-your-app) on *lines 15 and 16*
 5) Exit vim and execute `source ./auth.sh`
 6) Execute `login` to initiate basic Github OAuth flow *(NOTE: a .session.sh file is temporarily created)*
