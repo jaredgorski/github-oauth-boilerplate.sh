@@ -4,13 +4,12 @@ Boilerplate OAuth flow for **shell** scripts integrating with the Github v3 API
 
 ![](/.media/gh_oauth_bp-demo.gif)
 
----
 
-## The Basics
+# The Basics
 
 It is surprisingly easy to add OAuth to your Github-integrated application. Hopefully this boilerplate, though basic, is enough to get you started!
 
-### 10 Easy Steps:
+## 10 Easy Steps:
 1) Clone this repository to your computer
 2) Navigate to the resulting directory
 3) Open ./auth.sh in vim - `vim ./auth.sh`
@@ -24,7 +23,7 @@ It is surprisingly easy to add OAuth to your Github-integrated application. Hope
 
 ---
 
-#### A note on 2-Factor Authentication:
+### A note on 2-Factor Authentication:
 This boilerplate does not yet support 2-Factor Authentication, but this is in the works. See the following link if you would like to extend the code yourself, and feel free to send a pull-request if you do!
 
 Implementing 2-Factor Authentication: https://developer.github.com/v3/auth/#working-with-two-factor-authentication
